@@ -1,6 +1,46 @@
+"use client";
+
 import Image from "next/image";
 
+import { useEffect } from "react";
+import { socket } from "../lib/socket";
+
+import Button from "../components/button";
+
+import { v4 as uuid4 } from "uuid";
+
+const username = uuid4();
+
 export default function Home() {
+
+  useEffect(() => {
+    socket.connect();
+
+    socket.on("connect", () => {
+      console.log("connected as", username)
+    })
+
+    socket.on("disconnect", () => {
+      console.log("disconnected as", username)
+    })
+
+    socket.emit("room:joined", {roomId: "123", user: username, msg: "Hi everyone I have joined!"}, () => {
+      console.log(`${username} you have joined!`)
+    })
+
+    socket.on("room:user-joined", ({ msg }) => console.log(msg))
+
+    socket.on("chat:message", (msg) => {
+      console.log(`${msg.from}: ${msg.text.text} \nDate:${msg.at}`)
+    })
+
+  }, [])
+
+
+  const chat = () => {
+    socket.emit("chat:message", {text: "Hello guys! I am Johnson. This is my text!", username: username});
+  }
+
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
@@ -63,6 +103,8 @@ export default function Home() {
             Documentation
           </a>
         </div>
+
+        <Button onCLick={chat}/>
       </main>
     </div>
   );
