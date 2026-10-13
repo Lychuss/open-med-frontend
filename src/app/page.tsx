@@ -9,37 +9,9 @@ import Button from "../components/button";
 
 import { v4 as uuid4 } from "uuid";
 
-const username = uuid4();
+export const username = uuid4();
 
 export default function Home() {
-
-  useEffect(() => {
-    socket.connect();
-
-    socket.on("connect", () => {
-      console.log("connected as", username)
-    })
-
-    socket.on("disconnect", () => {
-      console.log("disconnected as", username)
-    })
-
-    socket.emit("room:joined", {roomId: "123", user: username, msg: "Hi everyone I have joined!"}, () => {
-      console.log(`${username} you have joined!`)
-    })
-
-    socket.on("room:user-joined", ({ msg }) => console.log(msg))
-
-    socket.on("chat:message", (msg) => {
-      console.log(`${msg.from}: ${msg.text.text} \nDate:${msg.at}`)
-    })
-
-  }, [])
-
-
-  const chat = () => {
-    socket.emit("chat:message", {text: "Hello guys! I am Johnson. This is my text!", username: username});
-  }
 
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
@@ -103,8 +75,6 @@ export default function Home() {
             Documentation
           </a>
         </div>
-
-        <Button onCLick={chat}/>
       </main>
     </div>
   );
