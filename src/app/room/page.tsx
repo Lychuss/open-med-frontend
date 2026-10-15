@@ -2,7 +2,7 @@
 
 import { socket } from "@/src/lib/socket";
 import { useEffect } from "react";
-import Button from "@/src/components/button";
+import Button from "@/src/components/ui/button";
 import { username } from "../page";
 
 let localStream: MediaStream;
