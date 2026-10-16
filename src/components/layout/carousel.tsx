@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 
 type Slide = {
   id: number;
@@ -71,9 +72,23 @@ export default function Carousel() {
           {slides.map((slide) => (
             <div
               key={slide.id}
-              className={`${slide.color} flex h-56 w-72 shrink-0 snap-start items-center justify-center rounded-xl text-2xl font-bold text-white`}
+              className={`flex flex-col h-[300px] w-60 shrink-0 snap-start rounded-xl text-2xl space-y-3`}
             >
-              {slide.title}
+                <div>
+                    <Image src={"/images/landing-three.jpg"} alt={slide.title} width={1000} height={1000} className="rounded-xl w-full h-[120px]" />
+                </div>
+                <div className="w-full h-[100px]">
+                    <div className="flex items-center">
+                        <Image src={"/images/landing-one.jpg"} alt={slide.title} width={1000} height={1000} className="rounded-xl w-[25px] h-[25px]" />
+                        <div className="flex items-center justify-center self-end -ml-2 w-[10px] h-[10px] rounded-full bg-white">
+                            <div className='w-[7px] h-[7px] bg-green-500 rounded-full'></div>
+                        </div>
+                        <h1 className='text-black text-xs ml-1 font-semibold w-[140px]'>Doc. San Juan G.</h1>
+                        <div className='bg-green-500 w-[75px] h-auto text-xs rounded-lg p-[0.3rem]'>
+                            <h1 className='text-center font-semibold'>Top Rated</h1>
+                        </div>
+                    </div>
+                </div>
             </div>
           ))}
         </div>
