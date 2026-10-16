@@ -1,9 +1,11 @@
 type MyProps = {
     onCLick?: () => void;
+    children?: string;
+    className?: string;
 }
 
 export default function Button(props: MyProps){
     return (
-        <button className="border w-[100px] h-auto" onClick={props.onCLick}>Click Me</button>
+        <button className={`${props.className}`} onClick={props.onCLick}>{props.children}</button>
     );
 }
