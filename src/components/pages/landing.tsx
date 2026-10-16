@@ -9,7 +9,7 @@ export default function Landing(){
 
             <div className="absolute flex flex-col justify-center inset-0 w-full text-start h-full px-[1rem] space-y-4  ">
                 <div className="flex flex-col items-center space-y-4">
-                    <h1 className="text-[1.7em] font-semibold">We want to heal the patient with servces.</h1>
+                    <h1 className="text-[1.7em] font-semibold">We want to heal the patient with services.</h1>
                     <p className="text-xs">We offer personalized services design to support and enhance your path to optimal wellness.</p>
                 </div>
 
