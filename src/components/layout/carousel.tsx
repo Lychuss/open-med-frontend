@@ -79,7 +79,7 @@ export default function Carousel() {
           >
           {categories.map((category) => (
             <div
-              key={category.id}
+              key={category.title}
               className={`flex flex-col w-[150px] text-center shrink-0 snap-start text-sm space-y-3 border-b-2 transition-all transform duration-300
                   ease-in-out font-semibold mb-[1rem] ${category.id === categoryId ? "text-black border-black" : "text-gray-200 border-gray-200"}`}
               onClick={() => setCategoryId(category.id)}>
@@ -121,8 +121,9 @@ export default function Carousel() {
                     </div>
                     <p className='text-xs text-black'>Expertise:</p>
                     <div className='flex flex-wrap gap-2'>
-                      {slides.map(() => (
-                        <div className='text-xs text-black bg-gray-200 border border-gray-200 rounded-xl p-[0.2rem]'>
+                      {slides.map((slide) => (
+                        <div className='text-xs text-black bg-gray-200 border border-gray-200 rounded-xl p-[0.2rem]'
+                          key={slide.id}>
                           Cardiology
                         </div>
                       ))}
