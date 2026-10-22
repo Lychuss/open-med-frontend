@@ -8,7 +8,7 @@ export default async function SignUpEmailApi(accountData: SignUpInterface){
         name: dataAccount.name,
         email: dataAccount.email,
         password: dataAccount.password,
-        callbackURL: `${process.env.NEXT_PUBLIC_CALLBACK_URL}/dashboard`
+        callbackURL: `${process.env.NEXT_PUBLIC_CALLBACK_URL}/login`
     })
 
     if(error){

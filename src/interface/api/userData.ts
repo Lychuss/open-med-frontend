@@ -13,5 +13,5 @@ export type UserData = {
 }
 
 export interface UserDataContextInterface {
-    data: UserData
+    data: UserData | null
 }

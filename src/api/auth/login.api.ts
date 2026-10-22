@@ -23,8 +23,8 @@ export async function LoginGoogleApi(){
     await betterAuth.signIn.social({
         provider: "google",
         callbackURL: `${process.env.NEXT_PUBLIC_CALLBACK_URL}/`
-    }
-);
+        }
+    );
 }
 
 
