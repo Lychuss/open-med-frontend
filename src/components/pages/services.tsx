@@ -6,6 +6,8 @@ export default function Services(){
 
     const { data } = useTokenContext();
 
+    if(!data) return;
+
     return (
         <section className="flex flex-col w-full min-h-screen px-[1rem] py-[3rem] space-y-3">
             <div className="flex items-center gap-1">
