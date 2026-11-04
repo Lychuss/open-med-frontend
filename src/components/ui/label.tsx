@@ -4,6 +4,6 @@ type MyProps = {
 
 export default function Label(props: MyProps){
     return (
-        <label className="">{props.children}</label>
+        <label className="text-black">{props.children}</label>
     );
 }

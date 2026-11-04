@@ -62,14 +62,6 @@ export default function Carousel() {
     return () => window.removeEventListener('resize', updateState);
   }, [updateState]);
 
-  if (!data && click) {
-    return (
-      <div>
-        <Login className="w-full h-[400px] flex items-center justify-center" />
-      </div>
-    );
-  }
-
   const scrollByOne = (direction: 1 | -1): void => {
     const track = trackRef.current;
     if (!track) return;
@@ -147,6 +139,8 @@ export default function Carousel() {
             </div>
           ))}
         </div>
+
+        {!data && click && <Login className="w-[350px] h-[300px]" onClose={() => setClick(false)} />}
 
         {/* Prev */}
         {/* <button
