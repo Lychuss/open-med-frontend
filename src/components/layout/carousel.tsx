@@ -1,5 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import { useTokenContext } from "@/src/context/tokenContext";
+import Login from './login';
+
 
 type Slide = {
   id: number;
@@ -30,6 +33,9 @@ export default function Carousel() {
   const [atEnd, setAtEnd] = useState<boolean>(false);
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [categoryId, setCategoryId] = useState<number>(0);
+  const [click,setClick] = useState<boolean>(false);
+
+  const data = useTokenContext();
 
   const getStep = (track: HTMLDivElement): number => {
     const firstCard = track.firstElementChild as HTMLElement | null;
@@ -55,6 +61,14 @@ export default function Carousel() {
     window.addEventListener('resize', updateState);
     return () => window.removeEventListener('resize', updateState);
   }, [updateState]);
+
+  if (!data && click) {
+    return (
+      <div>
+        <Login className="w-full h-[400px] flex items-center justify-center" />
+      </div>
+    );
+  }
 
   const scrollByOne = (direction: 1 | -1): void => {
     const track = trackRef.current;
@@ -97,6 +111,7 @@ export default function Carousel() {
               key={slide.id}
               className={`flex flex-col h-[350px] w-60 shrink-0 snap-start rounded-xl text-2xl space-y-3 active:scale-90 transition-all transform
                 duraiton-300 ease-in-out`}
+              onClick={() => setClick(true)}
             >
                 <div className='relative'>
                     <Image src={"/images/landing-three.jpg"} alt={slide.title} width={1000} height={1000} className="rounded-xl w-full h-[130px]" />

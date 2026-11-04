@@ -17,10 +17,12 @@ export default function Login(props: MyProps){
             <form onSubmit={handleSubmit}>
 
                 <Label children="Email" />
-                <Input id="email" placeholder="Type your email example@gmail.com" name="email" type="email"/>
+                <Input id="email" placeholder="Type your email example@gmail.com" name="email" type="email" 
+                    className="border border-gray-300 text-black"/>
                 
                 <Label children="Password" />
-                <Input id="password" placeholder="Type your email password" name="password" type="password"/>
+                <Input id="password" placeholder="Type your email password" name="password" type="password"
+                    className="border border-gray-300 text-black"/>
 
                 <Button />  
             </form>

@@ -31,8 +31,8 @@ export function TokenProvider({ children }: { children: ReactNode }){
     );
 }
 
-export const useTokenContext = (): UserDataContextInterface => {
+export const useTokenContext = (): UserDataContextInterface| null => {
     const tokenContextData = useContext(TokenContext);
-    if(!tokenContextData) throw new Error("Error at getting the token context!");
+    if(!tokenContextData) return null;
     return tokenContextData;
 }

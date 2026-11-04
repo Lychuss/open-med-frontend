@@ -16,7 +16,6 @@ export default function Home() {
   return (
     <>
       <TokenProvider>
-        <Login />
         <Landing />
         <Services />
       </TokenProvider>
