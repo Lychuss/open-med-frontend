@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+
 import Button from "../ui/button";
 import Input from "../ui/input";
 import Label from "../ui/label";
@@ -5,14 +9,24 @@ import Label from "../ui/label";
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 
+// API CALLS
+import { LoginEmailApi } from "@/src/api/auth/login.api";
+
 type MyProps = {
     className?: string;
     onClose: () => void;
 }
 
+
 export default function Login(props: MyProps){
-    const handleSubmit = async () => {
-        
+
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [loading, setLoading] = useState<boolean>(false);
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        await LoginEmailApi(email, password, setLoading);
     }
 
     return (
@@ -30,14 +44,30 @@ export default function Login(props: MyProps){
                     </button>
 
                     <Label children="Email" />
-                    <Input id="email" placeholder="example@gmail.com" name="email" type="email" 
+                    <Input id="email" placeholder="example@gmail.com" name="email" type="email" onChange={(e) => setEmail(e.target.value)}
                         className="border border-gray-300 text-black py-1 px-2"/>
                     
                     <Label children="Password" />
-                    <Input id="password" placeholder="password" name="password" type="password"
+                    <Input id="password" placeholder="password" name="password" type="password" onChange={(e) => setPassword(e.target.value)}
                         className="border border-gray-300 text-black py-1 px-2"/>
 
-                    <Button type="submit" className="bg-green-700 text-white py-2 px-4 rounded hover:bg-blue-800 mt-[2rem]" children="Sign in" />  
+                    <Button
+                        type="submit"
+                        className="bg-green-700 text-white py-2 px-4 rounded hover:bg-blue-800 mt-[2rem] flex items-center justify-center gap-2"
+                        disabled={loading}
+                        aria-busy={loading}
+                        children={
+                            <>
+                                {loading && (
+                                    <span
+                                        aria-hidden="true"
+                                        className="h-4 w-4 animate-spin rounded-full border-2 border-gray-400 border-t-transparent"
+                                    />
+                                )}
+                                {loading ? "Signing in..." : "Sign in"}
+                            </>
+                        }
+                    />
 
                     <div className="flex items-center justify-center gap-2 mt-[1rem]">
                         <div className="w-full h-px bg-gray-300 my-4" />
