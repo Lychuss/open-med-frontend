@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation"
 
 import Button from "../ui/button";
 import Input from "../ui/input";
@@ -10,19 +11,20 @@ import { FaGoogle } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 
 // API CALLS
-import { LoginEmailApi } from "@/src/api/auth/login.api";
+import { LoginEmailApi } from "@/api/auth/login.api";
 
 type MyProps = {
     className?: string;
     onClose: () => void;
 }
 
-
 export default function Login(props: MyProps){
 
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
+
+    const router = useRouter();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -45,11 +47,11 @@ export default function Login(props: MyProps){
 
                     <Label children="Email" />
                     <Input id="email" placeholder="example@gmail.com" name="email" type="email" onChange={(e) => setEmail(e.target.value)}
-                        className="border border-gray-300 text-black py-1 px-2"/>
+                        className="border border-gray-300 bg-gray-300 rounded-xl text-black py-1 px-2"/>
                     
                     <Label children="Password" />
                     <Input id="password" placeholder="password" name="password" type="password" onChange={(e) => setPassword(e.target.value)}
-                        className="border border-gray-300 text-black py-1 px-2"/>
+                        className="border border-gray-300 bg-gray-300 rounded-xl text-black py-1 px-2"/>
 
                     <Button
                         type="submit"
@@ -81,7 +83,7 @@ export default function Login(props: MyProps){
                     </div>
 
                     <p className="text-center text-gray-500 mt-[1rem]">
-                        Or <span className="cursor-pointer border-b border-gray-500 hover:border-blue-700">sign up with email</span>
+                        Or <span className="cursor-pointer border-b border-gray-500 hover:border-blue-700" onClick={() => router.push("/sign-up")}>sign up with email</span>
                     </p>
 
                 </form>

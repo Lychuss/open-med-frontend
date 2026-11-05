@@ -1,5 +1,5 @@
 import { betterAuth } from "../../lib/better-auth";
-
+import type { ErrorContext, SuccessContext } from "better-auth/client";
 
 export async function LoginEmailApi(email: string, password: string, setLoading?: (loading: boolean) => void){
 
@@ -12,10 +12,10 @@ export async function LoginEmailApi(email: string, password: string, setLoading?
             onResponse: () => {
                 setLoading?.(false);
             },
-            onSuccess: async (ctx) => {
+            onSuccess: async (ctx: SuccessContext<unknown>) => {
                 window.location.href = `${process.env.NEXT_PUBLIC_CALLBACK_URL}/`
             },
-            onError: (ctx) => {
+            onError: (ctx: ErrorContext) => {
                 alert(ctx.error.message);
                 setLoading?.(false);
             }
@@ -30,6 +30,5 @@ export async function LoginGoogleApi(){
         }
     );
 }
-
 
 
