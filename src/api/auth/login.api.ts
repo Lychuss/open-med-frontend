@@ -14,6 +14,7 @@ export async function LoginEmailApi(email: string, password: string, setLoading?
             },
             onSuccess: async (ctx: SuccessContext<unknown>) => {
                 window.location.href = `${process.env.NEXT_PUBLIC_CALLBACK_URL}/`
+                console.log(process.env.NEXT_PUBLIC_CALLBACK_URL)
             },
             onError: (ctx: ErrorContext) => {
                 alert(ctx.error.message);

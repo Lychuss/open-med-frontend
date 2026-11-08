@@ -30,6 +30,8 @@ export default function SignUp() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
+        console.log("Email:", email);
+
         if(password !== confirmPassword){
             password !== confirmPassword && setPasswordNotMatch(true);
             return;
@@ -43,6 +45,8 @@ export default function SignUp() {
             city: city,
             sex: "MALE", 
         });
+
+        console.log("Sign Up Response:", data);
 
         if(!data){
             return router.push("/");

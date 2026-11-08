@@ -9,7 +9,6 @@ import Image from "next/image";
 import Button from "../ui/button";
 import Login from "../layout/login";
 
-
 export default function Landing(){
 
     const router = useRouter();
@@ -45,7 +44,7 @@ export default function Landing(){
                 </div>
             </div>
 
-            {!data && click && <Login className="w-[350px] h-[300px]" onClose={() => setClick(false)} />}
+            {!data && click && <Login className="w-[350px] h-[300px]" onClose={() =>  setClick(false)}/>}
 
         </section>        
     );
