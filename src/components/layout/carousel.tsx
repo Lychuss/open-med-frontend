@@ -25,7 +25,6 @@ const categories: Slide[] = [
 
 ];
 
-
 // TODO: I NEED TO UNSERTAND THIS LATER, ITS A PREMADE TEMPLATE
 export default function Carousel() {
   const trackRef = useRef<HTMLDivElement>(null);

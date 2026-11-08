@@ -1,5 +1,5 @@
 type MyProps = {
-    onCLick?: () => void;
+    onClick?: () => void;
     children?: React.ReactNode;
     className?: string;
     type?: "button" | "submit" | "reset";
@@ -12,7 +12,7 @@ export default function Button(props: MyProps){
         <button
             className={`${props.className}`}
             type={props.type}
-            onClick={props.onCLick}
+            onClick={props.onClick}
             disabled={props.disabled}
             aria-busy={props["aria-busy"]}
         >

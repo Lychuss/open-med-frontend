@@ -1,7 +1,31 @@
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
+import { useTokenContext } from "@/context/tokenContext";
+
 import Image from "next/image";
 import Button from "../ui/button";
+import Login from "../layout/login";
+
 
 export default function Landing(){
+
+    const router = useRouter();
+
+    const [click, setClick] = useState<boolean>(false);
+
+    const data = useTokenContext();
+
+    const learnMoreButton = () => {
+        setClick(true);
+    }
+
+    const contactUsButton = () => {
+        setClick(true);
+    }
+
     return (
         <section className="relative w-full min-h-screen bg-black" id="home">
 
@@ -14,10 +38,14 @@ export default function Landing(){
                 </div>
 
                 <div className="flex items-start gap-3">
-                    <Button className="bg-blue-600 rounded-lg px-[1.2rem] py-[0.7rem] text-[0.8em] font-semibold" children="Learn More ↗"/>
-                    <Button className="border rounded-lg px-[0.9rem] py-[0.6rem] text-[0.8em] font-semibold" children="Contact Us"/>
+                    <Button className="bg-blue-600 rounded-lg px-[1.2rem] py-[0.7rem] text-[0.8em] font-semibold" children="Learn More ↗"
+                        onClick={learnMoreButton} />
+                    <Button className="border rounded-lg px-[0.9rem] py-[0.6rem] text-[0.8em] font-semibold" children="Contact Us"
+                        onClick={contactUsButton}/>
                 </div>
             </div>
+
+            {!data && click && <Login className="w-[350px] h-[300px]" onClose={() => setClick(false)} />}
 
         </section>        
     );
