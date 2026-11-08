@@ -127,6 +127,8 @@ export default function SignUp() {
                         </>
                     }
                 />
+                
+                <p className="text-sm text-gray-500 mt-[1rem] self-center">Already have an account? <span className="text-blue-500 cursor-pointer" onClick={() => router.push("/login")}>Log in</span></p>
             </form>
         </div>
     )

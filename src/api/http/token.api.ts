@@ -1,5 +1,5 @@
 export default async function TokenApi(){
-    const response= await fetch(`${process.env.NEXT_PUBLIC_API_URL}/me`, {
+    const response= await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/me`, {
         method: "GET",
         credentials: "include"
     })
@@ -9,6 +9,8 @@ export default async function TokenApi(){
     }
 
     const data = await response.json();
+
+    console.log("TokenApi data:", data);
 
     return data;
 }

@@ -18,6 +18,7 @@ export default function Landing(){
     const data = useTokenContext();
 
     const learnMoreButton = () => {
+        console.log(data);
         setClick(true);
     }
 
