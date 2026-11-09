@@ -17,6 +17,8 @@ export default function Services(){
             <h1 className="font-bold text-black text-lg mb-[2rem]">Healthcare services for your well-being</h1>
 
             <Carousel />
+
+            <p className="border-b-1 border-black text-sm text-black w-[65px]">Show all</p>
         </section>
     );
 }
