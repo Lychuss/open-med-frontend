@@ -8,6 +8,7 @@ import Services from "../components/pages/services";
 import Login from "../components/layout/login";
 
 import { TokenProvider } from "../context/tokenContext";
+import { DoctorsProvider } from "@/context/doctorsContext";
 
 export const username = uuid4();
 
@@ -16,8 +17,15 @@ export default function Home() {
   return (
     <>
       <TokenProvider>
+
         <Landing />
-        <Services />
+
+        <DoctorsProvider>
+
+          <Services />
+
+        </DoctorsProvider>
+        
       </TokenProvider>
     </>
   );

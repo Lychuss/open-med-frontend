@@ -1,6 +1,6 @@
 import { createContext, useCallback, useEffect, useState, useContext, ReactNode } from "react";
 import { betterAuth } from "../lib/better-auth";
-import TokenApi from "../api/http/token.api";
+import TokenApi from "../api/endpoints/token.api";
 import { UserDataContextInterface } from "../interface/api/userData";
 
 const TokenContext = createContext<UserDataContextInterface | null>(null);

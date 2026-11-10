@@ -1,8 +1,13 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 import Carousel from "../layout/carousel";
 
+
 export default function Services(){
+
+    const router = useRouter();
 
     return (
         <section className="flex flex-col w-full min-h-screen px-[1rem] py-[3rem] space-y-3">
@@ -18,7 +23,9 @@ export default function Services(){
 
             <Carousel />
 
-            <p className="border-b-1 border-black text-sm text-black w-[65px]">Show all</p>
+            <p className="border-b-1 border-black text-sm text-black w-[65px] cursor-pointer" onClick={() => router.push("/all/search")}>
+                Show all
+            </p>
         </section>
     );
 }

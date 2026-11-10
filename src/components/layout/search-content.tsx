@@ -1,9 +1,10 @@
 // src/app/[services]/search/SearchContent.tsx
 "use client";
 
-import { useParams } from "next/navigation";
+import { useDoctorsContext } from "@/context/doctorsContext";
 import { useState, useEffect } from "react";
 
+import Carousel from "../layout/carousel";
 import Input  from "@/components/ui/input";
 
 let services = [
@@ -32,8 +33,7 @@ export default function SearchContent() {
   const [filteredServices, setFilteredServices] = useState<string[]>([]);
   const [selectedService, setSelectedService] = useState<string | null>(null);
 
-  const params = useParams();
-  const service = params.services as string;
+  const doctors = useDoctorsContext();
 
   useEffect(() => {
     setFilteredServices(
@@ -58,10 +58,9 @@ export default function SearchContent() {
           </ul>
         )}
       </div>
-      <div className="flex flex-col items-center justify-center min-h-screen">
-        
-        
-      </div>  
+
+      <Carousel />
+
     </section>
   );
 }

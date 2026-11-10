@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { searchCities, type CitySuggestion } from "@/api/http/city.api";
+import { searchCities, type CitySuggestion } from "@/api/endpoints/city.api";
 
 type CitySelectorProps = {
     onCityChange: (city: string) => void;
