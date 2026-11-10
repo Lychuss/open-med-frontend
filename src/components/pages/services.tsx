@@ -23,7 +23,7 @@ export default function Services(){
 
             <Carousel />
 
-            <p className="border-b-1 border-black text-sm text-black w-[65px] cursor-pointer" onClick={() => router.push("/all/search")}>
+            <p className="border-b-1 border-black text-sm text-black w-[65px] cursor-pointer" onClick={() => router.push("/search")}>
                 Show all
             </p>
         </section>

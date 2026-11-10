@@ -4,13 +4,18 @@ import { createContext, useCallback, useEffect, useState, useContext, ReactNode 
 import { DoctorData } from "../interface/api/doctorData";
 import DoctorsApi from "@/api/endpoints/doctors.api";
 
-export const DoctorsContext = createContext<DoctorData | null>(null);
+const DoctorsContext = createContext<DoctorData | null>(null);
 
 export function DoctorsProvider({ children }: { children: ReactNode }) {
     const [doctors, setDoctors] = useState<DoctorData | null>(null);
 
     const fetchDoctors = useCallback(async () => {
-        await DoctorsApi().then(setDoctors);
+        try {
+            const data = await DoctorsApi();
+            setDoctors(data);
+        } catch(err){
+            console.log(err);
+        }
     }, []);
 
     useEffect(() => {
@@ -24,10 +29,8 @@ export function DoctorsProvider({ children }: { children: ReactNode }) {
     );
 }
 
-export function useDoctorsContext() {
+export const useDoctorsContext = (): DoctorData | null => {
     const context = useContext(DoctorsContext);
-    if (!context) {
-        throw new Error("useDoctors must be used within a DoctorsProvider");
-    }
+    if (!context) return null;
     return context;
 }

@@ -30,8 +30,8 @@ export default function Carousel() {
 
   const data = useTokenContext();
   const doctors = useDoctorsContext();
-
-  const slides = doctors;
+  
+  console.log("This is the doctors", doctors);
   
   const getStep = (track: HTMLDivElement): number => {
     const firstCard = track.firstElementChild as HTMLElement | null;
@@ -57,6 +57,14 @@ export default function Carousel() {
     window.addEventListener('resize', updateState);
     return () => window.removeEventListener('resize', updateState);
   }, [updateState]);
+
+  if(!doctors) return (
+    <div className="flex items-center justify-center text-gray-500">
+        Loading...
+    </div>
+  );
+
+  const slides = doctors.data;
 
   const scrollByOne = (direction: 1 | -1): void => {
     const track = trackRef.current;
@@ -94,7 +102,7 @@ export default function Carousel() {
           onScroll={updateState}
           className="flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          {slides.doctors.map((slide) => (
+          {slides.map((slide) => (
             <div
               key={slide.id}
               className={`flex flex-col h-[350px] w-60 shrink-0 snap-start rounded-xl text-2xl space-y-3 active:scale-90 transition-all transform
@@ -111,7 +119,7 @@ export default function Carousel() {
                         <div className="flex items-center justify-center self-end -ml-2 w-[10px] h-[10px] rounded-full bg-white">
                             <div className='w-[7px] h-[7px] bg-green-500 rounded-full'></div>
                         </div>
-                        <h1 className='text-black text-xs ml-1 font-semibold w-[140px]'>{slide.}</h1>
+                        <h1 className='text-black text-xs ml-1 font-semibold w-[140px]'>{slide.user.name}</h1>
                         <div className='bg-green-500 w-[75px] h-auto text-xs rounded-lg p-[0.3rem]'>
                             <h1 className='text-center font-semibold'>Top Rated</h1>
                         </div>
@@ -124,10 +132,10 @@ export default function Carousel() {
                     </div>
                     <p className='text-xs text-black'>Expertise:</p>
                     <div className='flex flex-wrap gap-2'>
-                      {slides.map((slide) => (
+                      {slide.expertise.map((expert) => (
                         <div className='text-xs text-black bg-gray-200 border border-gray-200 rounded-xl p-[0.2rem]'
-                          key={slide.id}>
-                          Cardiology
+                          key={expert.id}>
+                            {expert.name}
                         </div>
                       ))}
                     </div>

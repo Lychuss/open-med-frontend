@@ -1,4 +1,12 @@
-type Doctor = {
+import type { UserData } from "./userData";
+
+type Expertise = {
+  id: string,
+  name: string,
+  description: string
+}
+
+export type Doctor = {
     id: string,
     userId: string,
     licenseNumber: number,
@@ -8,9 +16,11 @@ type Doctor = {
     education: null,
     status: "APPROVED" | "PENDING" | "REJECTED",
     reviewedAt: null,
-    createdAt: string
+    createdAt: string,
+    user: UserData,
+    expertise: Expertise[]
 }
 
 export interface DoctorData {
-  doctors: Doctor[];
+  data: Doctor[];
 }

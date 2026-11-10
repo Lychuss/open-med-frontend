@@ -11,8 +11,6 @@ export function TokenProvider({ children }: { children: ReactNode }){
     const user = betterAuth.useSession();
     const userId = user.data?.session.id;
 
-    console.log("TokenProvider userId:", userId);
-
     const fetchData = useCallback(async () => {
         if(!userId){
             setData(null);
@@ -35,7 +33,6 @@ export function TokenProvider({ children }: { children: ReactNode }){
 
 export const useTokenContext = (): UserDataContextInterface| null => {
     const tokenContextData = useContext(TokenContext);
-    console.log("Token Context Data:", tokenContextData);
     if(!tokenContextData) return null;
     return tokenContextData;
 }

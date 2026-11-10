@@ -48,7 +48,7 @@ export default function SearchContent() {
           id="search" name="search" type="text" onChange={(e) => setSearchQuery(e.target.value)} />     
         { /* Display filtered services in a dropdown */ }
         {filteredServices.length > 0 && searchQuery !== "" && (
-          <ul className="absolute bg-white border rounded-lg mt-[0.5rem] w-full h-autoz-10">
+          <ul className="absolute bg-white border rounded-lg mt-[0.5rem] w-full h-autoz-10 z-10">
             {filteredServices.map((s) => (
               <li key={s} className={`px-[1rem] py-[0.5rem] cursor-pointer text-black ${selectedService === s ? "bg-blue-100" : ""}`}
                 onClick={() => setSelectedService(s)}>

@@ -1,8 +1,8 @@
 "use client";
 
-import { socket } from "@/src/lib/socket";
+import { socket } from "@/lib/socket";
 import { useEffect } from "react";
-import Button from "@/src/components/ui/button";
+import Button from "@/components/ui/button";
 import { username } from "../page";
 
 let localStream: MediaStream;
@@ -67,7 +67,7 @@ export default function Room(){
                 <video id="my-video" autoPlay playsInline className="min-h-screen -scale-x-100 ml-[50%]"/>
             </div>
 
-            <Button onCLick={chat}/>
+            <Button onClick={chat}/>
         </div>
         
     );
